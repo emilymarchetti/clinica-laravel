@@ -22,7 +22,8 @@
             @endif
             @csrf
             <input class="form-control" type="datetime" name="data" id="data" placeholder="Data" value="{{ $consultas->data ?? ''}}" required><br>
-            <input class="form-control" type="descricao" name="descricao" id="descricao" placeholder="Descrição" value="{{$consultas->descricao ?? ''}}"><br>
+            <input class="form-control" type="text" name="descricao" id="descricao" placeholder="Descrição" value="{{$consultas->descricao ?? ''}}"><br>
+            <input class="form-control" type="text" name="valor" id="valor" placeholder="Valor" value="{{$consultas->valor ?? ''}}"><br>
 
             <select class="form-control" name="status" id="status">
                 <option value="0" @if( isset($consultas) && $consultas->status == 0) ? selected @endif>Não realizada</option>

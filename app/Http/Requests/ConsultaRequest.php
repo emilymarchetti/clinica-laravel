@@ -29,6 +29,8 @@ class ConsultaRequest extends FormRequest
             'data' => 'required',
             'status' => 'required',
             'descricao' => 'required',
+            'valor' => 'required',
+            'filtro' => 'filtro'
         ];
     }
 }

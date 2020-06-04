@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $data
  * @property string $descricao
  * @property bool $status
+ * @property double $valor
  * @property Carbon $create_time
  * @property Carbon $update_time
  * 
@@ -49,6 +50,7 @@ class Consulta extends Model
 		'data',
 		'descricao',
 		'status',
+		'valor',
 		'create_time',
 		'update_time'
 	];

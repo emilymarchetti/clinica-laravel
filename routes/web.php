@@ -49,6 +49,7 @@ Route::delete('/especialidade/{id}', 'EspecialidadeController@destroy')->name('e
 
 // Consulta
 Route::get('/consulta', 'ConsultaController@index')->name('consulta.index');
+Route::get('/consulta/search', 'ConsultaController@search')->name('consulta.search');
 Route::get('/consulta/create', 'ConsultaController@create')->name('consulta.create');
 Route::post('consulta', 'ConsultaController@store')->name('consulta.store');
 Route::get('/consulta/{id}', 'ConsultaController@show')->name('consulta.show');

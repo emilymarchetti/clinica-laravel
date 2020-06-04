@@ -10,5 +10,6 @@
     Data: {{date('d/m/Y H:i', strtotime($consultas->data))}} <br>
     Descrição: {{$consultas->descricao}} <br>
     Status: @if ($consultas->status == 0) Não realizada @else Realizada @endif <br>
+    Valor(R$): {{$consultas->valor}}
 </div>
 @endsection

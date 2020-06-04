@@ -8,6 +8,8 @@ use App\Models\Consulta;
 
 use Barryvdh\DomPDF\Facade as PDF;
 
+use function Psy\debug;
+
 class ConsultaController extends Controller
 {
     private $objConsulta;
@@ -27,8 +29,38 @@ class ConsultaController extends Controller
      */
     public function index()
     {
-        //
+        print_r('oi');
         $consultas = $this->objConsulta->all();
+        return view('consultas.index', compact('consultas'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function search(ConsultaRequest $request)
+    {
+        print_r('oi');
+        if ($request) {
+            $filtro = $request->filtro;
+        }
+
+        if ($filtro == 6) { // ORDER_BY_DATE
+            $consultas = $this->objConsulta->sortBy('data');
+        } elseif ($filtro == 2) { // FIRST
+            $consultas = $this->objConsulta->first();
+        } elseif ($filtro == 3) { // LAST
+            $consultas = $this->objConsulta->last();
+        } elseif ($filtro == 4) { // ORDER_BY_NAME_DOCTOR
+            $consultas = $this->objConsulta->join('medico', 'consulta.medico_id', '=', 'medico.id')->sortBy('medico.nome');
+        } elseif ($filtro == 5) { // ORDER_BY_NAME_PATIENT
+            $consultas = $this->objConsulta->join('paciente', 'consulta.paciente_id', '=', 'paciente.id')->sortBy('paciente.nome');
+        } else { // ALL
+            $consultas = $this->objConsulta->all();
+        }
         return view('consultas.index', compact('consultas'));
     }
 
@@ -59,6 +91,7 @@ class ConsultaController extends Controller
             'data' => $request->data,
             'status' => $request->status,
             'descricao' => $request->descricao,
+            'valor' => $request->valor,
         ]);
 
         if ($cad) {
@@ -110,6 +143,7 @@ class ConsultaController extends Controller
             'data' => $request->data,
             'status' => $request->status,
             'descricao' => $request->descricao,
+            'valor' => $request->valor,
         ]);
         return redirect('consulta');
     }
